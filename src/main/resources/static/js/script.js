@@ -9,8 +9,28 @@ const progressThumb = document.getElementById("progressThumb");
 const currentTimeLabel = document.getElementById("currentTime");
 const totalTimeLabel = document.getElementById("totalTime");
 
-let lyrics = [];
-let timings = [];
+// ==============================
+//   SONG DATA (was LyricsService.java)
+// ==============================
+const lyrics = [
+    "Meri tumhi se hai jawabdari, naraazgi bhi dher saari",
+    "Tumhein harane ki zid mein, ye zindagi tumhee se haari",
+    "Agar kabhi tumhein rulaya, kaha mujhe bhi chain aaya",
+    "Asal men dil nahi tumhara, khud hee ka dukhaya",
+    "Kya batau dard leke, kitni raahat hui hai mujhe",
+    "Lag raha hai qayde se ab mohabbat hui hai mujhe"
+];
+
+const timings = [
+    6200,
+    5750,
+    5000,
+    3850,
+    10000,
+    5600
+];
+
+const audioUrl = "audio/QaydeSe1.mp3";
 
 let currentIndex = 0;
 let lyricTimeout = null;
@@ -18,16 +38,9 @@ let lyricTimeout = null;
 let isPlaying = false;
 let isFinished = false;
 
-async function initialize() {
+function initialize() {
 
-    const response = await fetch("/api/lyrics");
-
-    const data = await response.json();
-
-    lyrics = data.lyrics;
-    timings = data.timings;
-
-    audioPlayer.src = data.audioUrl;
+    audioPlayer.src = audioUrl;
 
     renderLyrics();
 
